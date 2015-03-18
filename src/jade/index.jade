@@ -1,0 +1,121 @@
+doctype
+html(lang="en")
+	head
+		block 
+			include meta
+		title KNOCKOUT - SELECT2 INTEGRATION
+		block LINKS
+			include links
+		// IE POLY
+		script(src="js/bootstrap.ie10.poly.min.js", type="text/javascript", charset="UTF-8")
+	body
+		block NAVBAR
+			include navbar
+			.container-fluid
+				.row.row-offcanvas.row-offcanvas-right
+					.col-xs-12.col-sm-5
+						p.pull-right.visible-xs
+							button.btn.btn-primary.btn-xs(type="button", data-toggle="offcanvas") Show Output
+						.jumbotron
+							h1.fa.fa-caret-square-o-down  Select2
+							h1
+								small Bootstrap / Knockout Integration
+							p This is a collection of examples featuring Select2 plugin integrated into Bootstrap and exchanging element attributes inline with Knockout.
+						.row
+							.col-xs-12
+								.panel.panel-default
+									.panel-body
+										p Working with Select2 is pretty straight-forward if you are using the documentation and configuring the options correctly.  However, this project started when the requirement for cascading select form controls entered the scope.
+										p The battle was trying to get Select2 to return an object instead of just the value of the option(s) selected. Approaching this within Knockout meant creating a custom binding for Select2, but with all the conditions to account for in the code, this would be no easy feat.
+										p Keeping it simple would be the winning approach. With the custom binding only assigning Select2 to the element, we let Knockout do most of the work by using the OptionsAfterRender callback. Knockout first sets up the option elements and then Select2 is added not by sending an options data array but just from the option elements. This method positions Select2 to take-in an object and return an object.
+										p The OptionsAfterRender function loops over each option element as they are created, at the same time a custom function hides the placeholder and assigns other attributes utilized by Select2.
+								.panel.panel-default
+									.panel-body
+										p The option element attributes:
+										ul
+											li Label: This attribute can bd used as a "shorter version" for what is displayed in the dropdown.  ALSO KNOWN IN DOM REFERENT AS THE TEXT ATTRIBUTE
+											li Title: A title can be given to the option and is used for accessibility standards as well as acting like an ALT property on an IMG tag.
+											li Value: Unique value within the parent SELECT - primarilly used for identifying selections made by user to be subitted to database.  identified on the element VALUE reference and is also responsible for setting the SELECT value DOM attribute. Usually referenced in communication as primary_key, pk, or ID.
+											li TextContent: This is the text inside the OPTION tag.  It is what is displayed in the dropdown menu when there is no label attribute present.
+											li Selected: True or False setting
+											li Disabled: True of False setting
+						.row
+							.col-xs-12
+								.panel.panel-default
+									.panel-heading Single Select Form Controls
+									.panel-body
+										form.form-horizontal
+											each key, value in {"KO": "BS &amp; KO Only", "S2": "Select2"}
+												.form-group
+													label.col-xs-3.control-label(for="select" + value + "single") !{key}
+													.col-xs-9
+														if value === "KO"
+															select.form-control(id="select" + value + "single")(data-bind="options: singleOptions(), optionsText: 'text', optionsCaption: 'single select placeholder', optionsAfterRender: afterRender, selectedOptions: singleSelected")
+														else
+															select.select2.form-control(id="select" + value + "single")(data-bind="options: s2singleOptions(), optionsText: 'text', selectedOptions: s2singleSelected, optionsCaption: '', select2: { placeholder: 'select2 single placeholder', allowClear: false, closeOnSelect: true }, optionsAfterRender: afterRender")
+						.row
+							.col-xs-12
+								.panel.panel-default
+									.panel-heading Multiple Select Form Controls
+									.panel-body
+										form.form-horizontal
+											each key, value in {"KO": "BS &amp; KO Only", "S2": "Select2"}
+												.form-group
+													label.col-xs-3.control-label(for="select" + value + "multiple") !{key}
+													.col-xs-9
+														if value === "KO"
+															select.form-control(multiple="true")(id="select" + value + "multiple")(data-bind="options: multipleOptions(), optionsText: 'text', optionsAfterRender: afterRender, selectedOptions: multipleSelected")
+														else
+															select.select2.form-control(multiple="true")(id="select" + value + "multiple")(data-bind="options: s2multipleOptions(), optionsText: 'text', optionsAfterRender: afterRender, selectedOptions: s2multipleSelected, select2: { placeholder: 'select2 multiple placeholder', allowClear: false, closeOnSelect: false }")										
+					aside#sidebar.col-xs-6.col-sm-7.sidebar-offcanvas
+						.panel.panel-default
+							.panel-heading Single Select Properties and Values
+							each key, value in {"KO": "BS &amp; KO Only", "S2": "Select2"}
+								ul.list-group
+									li.list-group-item
+										h5.list-group-item-heading !{key} Option Elements
+										if value === "KO"
+											div(data-bind="foreach: singleTags")
+												p.list-group-item-text
+													code(data-bind="text: $data")
+										else
+											div(data-bind="foreach: s2singleTags")
+												p.list-group-item-text
+													code(data-bind="text: $data")
+									if value === "KO"
+										li.list-group-item(data-bind="visible: singleSelected().length !== 0")
+											h5.list-group-item-heading !{key} Element Values
+											p.list-group-item-text
+												code(data-bind="text: ko.toJSON(singleSelected(), null, 4)")
+									else
+										li.list-group-item(data-bind="visible: s2singleSelected().length !== 0")
+											h5.list-group-item-heading with !{key} Element Values
+											p.list-group-item-text
+												code(data-bind="text: ko.toJSON(s2singleSelected(), null, 4)")
+						.panel.panel-default
+							.panel-heading Multiple Select Properties and Values
+							each key, value in {"KO": "BS &amp; KO Only", "S2": "Select2"}
+								ul.list-group
+									li.list-group-item
+										h5.list-group-item-heading !{key} Option Elements
+										if value === "KO"
+											div(data-bind="foreach: multipleTags")
+												p.list-group-item-text
+													code(data-bind="text: $data")
+										else
+											div(data-bind="foreach: s2multipleTags")
+												p.list-group-item-text
+													code(data-bind="text: $data")
+									if value === "KO"
+										li.list-group-item(data-bind="visible: multipleSelected().length !== 0")
+											h5.list-group-item-heading !{key} Element Values
+											p.list-group-item-text
+												code(data-bind="text: ko.toJSON(multipleSelected(), null, 4)")
+									else
+										li.list-group-item(data-bind="visible: s2multipleSelected().length !== 0")
+											h5.list-group-item-heading with !{key} Element Values
+											p.list-group-item-text
+												code(data-bind="text: ko.toJSON(s2multipleSelected(), null, 4)")
+												
+		block SCRIPTS
+			include scripts

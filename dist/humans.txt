@@ -1,0 +1,23 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+/* TEAM */
+# TEAM
+Senior Manager of CS Technology Tools: Doug A. Hill
+Site: quickstep25 [at] me.com
+Twitter: @quickstep25
+Location: Canton, Georgia
+                 
+                 
+/* THANKS */
+# THANKS
+
+
+/* SITE */
+# TECHNOLOGY COLOPHON
+Last update: 2015/03/23 
+Language: English
+Doctype: HTML5
+Standards: HTML5, CSS3, JSLINT, CSS, LESS, JADE
+Components: jQuery, FontAwesome, Bootstrap, Select2
+Software: Adobe Dreamweaver CC, Adobe Edge Code CC, Adobe Illustrator CC, TextWrangler, CodeKit2, Notepad, Adobe Photoshop CC, Adobe Edge Animate CC
