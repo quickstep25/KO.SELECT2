@@ -14,7 +14,7 @@
 		"select",
 		"dropdown"
 	],
-	"homepage" : "http://www.bootstrap-switch.org",
+	"homepage" : "http://quickstep25.github.io/KO.SELECT2/",
 	"author" : 
 	{
 		"name" : "Doug Hill",
@@ -33,9 +33,9 @@
 	"repository" : 
 	{
 		"type" : "git",
-		"url" : ""
+		"url" : "https://github.com/quickstep25/KO.SELECT2"
 	},
-	"bugs" : "https://github.com/nostalgiaz/bootstrap-switch/issues",
+	"bugs" : "https://github.com/quickstep25/KO.SELECT2/issues/",
 	"license" : "Apache Version 2",
 	"readmeFilename" : "README.md",
 	"devDependencies" : 
