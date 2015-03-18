@@ -13,9 +13,7 @@ Disabled: True of False setting
 (function ($, ko, window, document) {
     'use strict';
 	
-	
 	localStorage.setItem('rootURL', window.location.origin + '/');
-
 		
 	var rootURL	= localStorage.getItem('rootURL'),
 		OptionsModel = function (id, text, title, label) {
@@ -43,8 +41,6 @@ Disabled: True of False setting
 			this.addOptions			= this.addOptions.bind(this);
 			this.loadJSON();
 		};
-
-
 	ko.utils.extend(ViewModel.prototype, {
 		
 		afterRender	: function (option, item) {
@@ -57,7 +53,6 @@ Disabled: True of False setting
 				option.title = item.title;
 				option.label = item.label;
 			}
-			
 			if (option.parentElement.hasAttribute('multiple')) {
 				if (option.parentElement.classList.contains('select2')) {
 					this.s2multipleTags.push(option.outerHTML);
@@ -86,7 +81,5 @@ Disabled: True of False setting
 			}.bind(this));
 		}
 	});
-
 	ko.applyBindings(new ViewModel());
-    
 }(jQuery, ko, window, document));
