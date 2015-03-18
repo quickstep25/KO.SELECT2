@@ -1,0 +1,45 @@
+{
+	"name" : "KO.SELECT2",
+	"description" : "Demonstration on incorporating Select2 into Bootstrap and Knockout as a custom binding.",
+	"version" : "1.0.0",
+	"keywords" : 
+	[
+		"bootstrap",
+		"select2",
+		"javascript",
+		"js",
+		"knockout",
+		"ko",
+		"form controls",
+		"select",
+		"dropdown"
+	],
+	"homepage" : "http://quickstep25.github.io/KO.SELECT2/",
+	"author" : 
+	{
+		"name" : "Doug Hill",
+		"email" : "quickstep25@me.com",
+		"url" : "http://quickstep25.github.io/"
+	},
+	"contributors" : 
+	[
+		
+	],
+	"main" : "dist/index.html",
+	"dependencies" : 
+	{
+		"jquery" : ">=1.9.0"
+	},
+	"repository" : 
+	{
+		"type" : "git",
+		"url" : "https://github.com/quickstep25/KO.SELECT2"
+	},
+	"bugs" : "https://github.com/quickstep25/KO.SELECT2/issues/",
+	"license" : "Apache Version 2",
+	"readmeFilename" : "README.md",
+	"devDependencies" : 
+	{
+		
+	}
+}
