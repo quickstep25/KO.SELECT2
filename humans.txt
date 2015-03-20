@@ -1,23 +1,29 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
-
 /* TEAM */
-# TEAM
-Senior Manager of CS Technology Tools: Doug A. Hill
+Senior Manager of Technology Tools and Reporting: Doug A. Hill
+Company: AT&T
 Site: quickstep25 [at] me.com
 Twitter: @quickstep25
-Location: Canton, Georgia
+Location: Canton, Georgia, United States of America
                  
                  
 /* THANKS */
-# THANKS
+Name: Kevin Brown
+URL: https://select2.github.io/
 
+Name: Ryan Niemeyer
+URL: http://knockoutjs.com/
+
+Name: Michael Best
+URL: http://knockoutjs.com/
+
+Name: Victor Gama
+URL: http://knockoutjs.com/
 
 /* SITE */
-# TECHNOLOGY COLOPHON
-Last update: 2015/03/23 
+URL: http://quickstep25.github.io/KO.SELECT2/
+Last update: 2015/23/23 
 Language: English
 Doctype: HTML5
 Standards: HTML5, CSS3, JSLINT, CSS, LESS, JADE
-Components: jQuery, FontAwesome, Bootstrap, Select2
+Components: jQuery, FontAwesome, Bootstrap, Select2, Knockout
 Software: Adobe Dreamweaver CC, Adobe Edge Code CC, Adobe Illustrator CC, TextWrangler, CodeKit2, Notepad, Adobe Photoshop CC, Adobe Edge Animate CC
