@@ -1,1 +1,208 @@
-page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--META-BASIC-->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta charset="UTF-8">
+    <!--META-APPLICATION INFORMATION AND DETAILS-->
+    <meta name="application-name" content="KNOCKOUT - SELECT2">
+    <meta name="keywords" content="Knockout, KO, Select2, Bootstrap">
+    <meta name="author" content="Doug A. Hill">
+    <link rel="author" href="humans.txt">
+    <meta name="description" content="Examples of using Select2 jQuery plugin within Bootstrap and Knockout.">
+    <!--META-DESKTOP: INTERNET EXPLORER 8 COMPATIBILITY-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--META-ALL MOBILE DEVICES-->
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <!--META-OLDER MOBILE DEVICES-->
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="0">
+    <!--APPLE OS MOBILE DEVICES-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--META-APPLE OS-DISABLE TELEPHONE LINKS-->
+    <meta name="format-detection" content="telephone=no">
+    <title>KNOCKOUT - SELECT2 INTEGRATION</title>
+    <!-- BOOTSTRAP-->
+    <link data-require="bootstrap@3.3.4" data-semver="3.3.4" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link data-require="bootstrap@3.3.4" data-semver="3.3.4" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link data-require="bootstrap@3.3.4" data-semver="3.3.4" rel="stylesheet" href="css/bootstrap.spacelab.min.css">
+    <!--	SELECT 2-->
+    <link data-require="select2@4.0.0" data-semver="4.0.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css">
+    <!-- OFF CANVAS-->
+    <link rel="stylesheet" media="screen" href="css/bootstrap.offcanvas.min.css">
+    <!-- CUSTOM STYLES-->
+    <link rel="stylesheet" media="screen" href="css/custom.styles.min.css">
+    <!-- FONT AWESOME-->
+    <link data-require="fontawesome@4.3.0" data-semver="4.3.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- WEB FONTS-->
+    <link rel="stylesheet" media="all" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900">
+    <!-- IE POLY-->
+    <script src="js/bootstrap.ie10.poly.min.js" type="text/javascript" charset="UTF-8"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" role="navigation" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><i class="fa fa-lg fa-bars"></i><span class="sr-only">Toggle Navigation</span></button><a href="#" class="navbar-brand">KO Examples</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-5">
+          <p class="pull-right visible-xs">
+            <button type="button" data-toggle="offcanvas" class="btn btn-primary btn-xs">Show Output</button>
+          </p>
+          <div class="jumbotron">
+            <h1 class="fa fa-caret-square-o-down"> Select2</h1>
+            <h1><small>Bootstrap / Knockout Integration</small></h1>
+            <p>This is a collection of examples featuring Select2 plugin integrated into Bootstrap and exchanging element attributes inline with Knockout.</p>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Working with Select2 is pretty straight-forward if you are using the documentation and configuring the options correctly.  However, this project started when the requirement for cascading select form controls entered the scope.</p>
+                  <p>The battle was trying to get Select2 to return an object instead of just the value of the option(s) selected. Approaching this within Knockout meant creating a custom binding for Select2, but with all the conditions to account for in the code, this would be no easy feat.</p>
+                  <p>Keeping it simple would be the winning approach. With the custom binding only assigning Select2 to the element, we let Knockout do most of the work by using the OptionsAfterRender callback. Knockout first sets up the option elements and then Select2 is added not by sending an options data array but just from the option elements. This method positions Select2 to take-in an object and return an object.</p>
+                  <p>The OptionsAfterRender function loops over each option element as they are created, at the same time a custom function hides the placeholder and assigns other attributes utilized by Select2.</p>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>The option element attributes:</p>
+                  <ul>
+                    <li>Label: This attribute can bd used as a "shorter version" for what is displayed in the dropdown.  ALSO KNOWN IN DOM REFERENT AS THE TEXT ATTRIBUTE</li>
+                    <li>Title: A title can be given to the option and is used for accessibility standards as well as acting like an ALT property on an IMG tag.</li>
+                    <li>Value: Unique value within the parent SELECT - primarilly used for identifying selections made by user to be subitted to database.  identified on the element VALUE reference and is also responsible for setting the SELECT value DOM attribute. Usually referenced in communication as primary_key, pk, or ID.</li>
+                    <li>TextContent: This is the text inside the OPTION tag.  It is what is displayed in the dropdown menu when there is no label attribute present.</li>
+                    <li>Selected: True or False setting</li>
+                    <li>Disabled: True of False setting</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">Single Select Form Controls</div>
+                <div class="panel-body">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="selectKOsingle" class="col-xs-3 control-label">BS &amp; KO Only</label>
+                      <div class="col-xs-9">
+                        <select id="selectKOsingle" data-bind="options: singleOptions(), optionsText: 'text', optionsCaption: 'single select placeholder', optionsAfterRender: afterRender, selectedOptions: singleSelected" class="form-control"></select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="selectS2single" class="col-xs-3 control-label">Select2</label>
+                      <div class="col-xs-9">
+                        <select id="selectS2single" data-bind="options: s2singleOptions(), optionsText: 'text', selectedOptions: s2singleSelected, optionsCaption: '', select2: { placeholder: 'select2 single placeholder', allowClear: false, closeOnSelect: true }, optionsAfterRender: afterRender" class="select2 form-control"></select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">Multiple Select Form Controls</div>
+                <div class="panel-body">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="selectKOmultiple" class="col-xs-3 control-label">BS &amp; KO Only</label>
+                      <div class="col-xs-9">
+                        <select multiple="true" id="selectKOmultiple" data-bind="options: multipleOptions(), optionsText: 'text', optionsAfterRender: afterRender, selectedOptions: multipleSelected" class="form-control"></select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="selectS2multiple" class="col-xs-3 control-label">Select2</label>
+                      <div class="col-xs-9">
+                        <select multiple="true" id="selectS2multiple" data-bind="options: s2multipleOptions(), optionsText: 'text', optionsAfterRender: afterRender, selectedOptions: s2multipleSelected, select2: { placeholder: 'select2 multiple placeholder', allowClear: false, closeOnSelect: false }" class="select2 form-control">										</select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside id="sidebar" class="col-xs-6 col-sm-7 sidebar-offcanvas">
+          <div class="panel panel-default">
+            <div class="panel-heading">Single Select Properties and Values</div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h5 class="list-group-item-heading">BS &amp; KO Only Option Elements</h5>
+                <div data-bind="foreach: singleTags">
+                  <p class="list-group-item-text"><code data-bind="text: $data"></code></p>
+                </div>
+              </li>
+              <li data-bind="visible: singleSelected().length !== 0" class="list-group-item">
+                <h5 class="list-group-item-heading">BS &amp; KO Only Element Values</h5>
+                <p class="list-group-item-text"><code data-bind="text: ko.toJSON(singleSelected(), null, 4)"></code></p>
+              </li>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h5 class="list-group-item-heading">Select2 Option Elements</h5>
+                <div data-bind="foreach: s2singleTags">
+                  <p class="list-group-item-text"><code data-bind="text: $data"></code></p>
+                </div>
+              </li>
+              <li data-bind="visible: s2singleSelected().length !== 0" class="list-group-item">
+                <h5 class="list-group-item-heading">with Select2 Element Values</h5>
+                <p class="list-group-item-text"><code data-bind="text: ko.toJSON(s2singleSelected(), null, 4)"></code></p>
+              </li>
+            </ul>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Multiple Select Properties and Values</div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h5 class="list-group-item-heading">BS &amp; KO Only Option Elements</h5>
+                <div data-bind="foreach: multipleTags">
+                  <p class="list-group-item-text"><code data-bind="text: $data"></code></p>
+                </div>
+              </li>
+              <li data-bind="visible: multipleSelected().length !== 0" class="list-group-item">
+                <h5 class="list-group-item-heading">BS &amp; KO Only Element Values</h5>
+                <p class="list-group-item-text"><code data-bind="text: ko.toJSON(multipleSelected(), null, 4)"></code></p>
+              </li>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h5 class="list-group-item-heading">Select2 Option Elements</h5>
+                <div data-bind="foreach: s2multipleTags">
+                  <p class="list-group-item-text"><code data-bind="text: $data"></code></p>
+                </div>
+              </li>
+              <li data-bind="visible: s2multipleSelected().length !== 0" class="list-group-item">
+                <h5 class="list-group-item-heading">with Select2 Element Values</h5>
+                <p class="list-group-item-text"><code data-bind="text: ko.toJSON(s2multipleSelected(), null, 4)"></code></p>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- JQUERY-->
+    <script data-require="jquery@2.1.3" data-semver="2.1.3" type="text/javascript" charset="UTF-8" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <!-- BOOTSTRAP-->
+    <script data-require="bootstrap@3.3.4" data-semver="3.3.4" type="text/javascript" charset="UTF-8" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- SELECT2-->
+    <script data-require="select2@4.0.0" data-semver="4.0.0" type="text/javascript" charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+    <!-- KNOCKOUT-->
+    <script data-require="knockout@3.3.0" data-semver="3.3.0" type="text/javascript" charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <!-- OFFCANVAS-->
+    <script type="text/javascript" charset="UTF-8" src="js/bootstrap.offcanvas.min.js"></script>
+    <!-- KO CUSTOM BINDINGS-->
+    <script type="text/javascript" charset="UTF-8" src="js/ko.custom.binding.select2.min.js"></script>
+    <!-- KO VIEW MODEL-->
+    <script type="text/javascript" charset="UTF-8" src="js/ko.viewmodel.min.js"> </script>
+  </body>
+</html>
